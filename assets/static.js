@@ -21,6 +21,49 @@ const roadmapItems = [
   },
 ];
 
+const projectCards = [
+  {
+    href: "/projects/ecoflow/",
+    image: "/assets/vendor/images/KcPdZXdct0hBYKLz7BkGICoNn9s.png",
+    title: "Ecoflow - Sustainable Travel & Crowd Intelligence App",
+    description:
+      "EcoFlow is a travel app concept designed to make Bali tourism more seamless, fair, and sustainable. Powered by real-time telco data, the app helps travelers avoid overcrowded spots, supports local businesses, and rewards eco-friendly choices.",
+    metric: "4.3/5",
+    metricName: "Usability Score",
+    tags: ["UI/UX Design", "Web Apps", "Telkomsel"],
+  },
+  {
+    href: "/projects/dunia-games/",
+    image: "/assets/vendor/images/OE8EUN93ZWSfKZZe2CfAkz7H2yE.png",
+    title: "Dunia Games - Gaming Content Platform Redesign",
+    description:
+      "Redesigning Indonesia's #3 gaming platform through a multi-format content strategy that serves both hardcore and casual gamers.",
+    metric: "+39%",
+    metricName: "Monthly Active Users",
+    tags: ["UI/UX Design", "Web Platform", "Telkomsel"],
+  },
+  {
+    href: "/projects/my-grapari/",
+    image: "/assets/vendor/images/VBx38hVbpnodGjR12cBCtbrufQU.png",
+    title: "MyGraPARI - Self-Service Kiosk Revamp",
+    description:
+      "Transforming 410 self-service kiosks across Indonesia to move customers from physical counters to a safer, simpler digital experience.",
+    metric: "85%",
+    metricName: "Digital Adoption",
+    tags: ["UI/UX Design", "Kiosk", "Telkomsel"],
+  },
+  {
+    href: "/projects/byu/",
+    image: "/assets/vendor/images/pB1fLZS8XBSyTsWEAqGo7Ib3Y.png",
+    title: "by.U - Building Loyalty That Lasts",
+    description:
+      "A reward system designed to turn short-term growth into lasting engagement and give users a reason to keep coming back.",
+    metric: "14,465",
+    metricName: "Users Surveyed",
+    tags: ["Product Strategy", "UI Design", "by.U"],
+  },
+];
+
 const roadmapTextStyles = {
   number:
     'font-family:Inter,"Inter Placeholder",sans-serif;font-size:40px;font-weight:700;letter-spacing:-.04em;line-height:1em;color:#ccc',
@@ -150,6 +193,74 @@ function initializeRoadmap() {
   else renderDesktopRoadmap(container);
 }
 
+function createProjectCard(project, index) {
+  const card = element("a");
+  card.className = "project-card";
+  card.href = project.href;
+  card.setAttribute("aria-label", `View ${project.title} case study`);
+  if (index === 0) card.dataset.nodeId = "6:16";
+
+  const media = element("div");
+  media.className = "project-card__media";
+  const image = element("img");
+  image.className = "project-card__image";
+  image.src = project.image;
+  image.alt = "";
+  image.loading = "lazy";
+  const arrow = element("span");
+  arrow.className = "project-card__arrow";
+  arrow.setAttribute("aria-hidden", "true");
+  const arrowImage = element("img");
+  arrowImage.src = "/assets/icons/project-arrow.svg";
+  arrowImage.alt = "";
+  arrow.append(arrowImage);
+  media.append(image, arrow);
+
+  const body = element("div");
+  body.className = "project-card__body";
+  const content = element("div");
+  content.className = "project-card__content";
+  const title = element("h3", "", project.title);
+  title.className = "project-card__title";
+  const summary = element("div");
+  summary.className = "project-card__summary";
+  const description = element("p", "", project.description);
+  description.className = "project-card__description";
+  const metric = element("div");
+  metric.className = "project-card__metric";
+  const metricLabel = element("span", "", "Result metric");
+  metricLabel.className = "project-card__metric-label";
+  const metricValue = element("span", "", project.metric);
+  metricValue.className = "project-card__metric-value";
+  const metricName = element("span", "", project.metricName);
+  metricName.className = "project-card__metric-name";
+  metric.append(metricLabel, metricValue, metricName);
+  summary.append(description, metric);
+  content.append(title, summary);
+
+  const tags = element("div");
+  tags.className = "project-card__tags";
+  for (const value of project.tags) {
+    const tag = element("span", "", value);
+    tag.className = "project-card__tag";
+    tags.append(tag);
+  }
+  body.append(content, tags);
+  card.append(media, body);
+  return card;
+}
+
+function initializeProjectList() {
+  if (location.pathname.startsWith("/projects/")) return;
+  const work = document.querySelector("#work");
+  const grid = work?.querySelector(".framer-1swzync");
+  if (!work || !grid) return;
+
+  work.classList.add("figma-project-list");
+  grid.classList.add("project-card-grid");
+  grid.replaceChildren(...projectCards.map(createProjectCard));
+}
+
 function updateClock() {
   const value = new Intl.DateTimeFormat("en-US", {
     timeZone: "America/New_York",
@@ -168,3 +279,4 @@ function updateClock() {
 updateClock();
 setInterval(updateClock, 1000);
 initializeRoadmap();
+initializeProjectList();

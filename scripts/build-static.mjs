@@ -2,6 +2,7 @@ import { mkdir, readFile, writeFile } from "node:fs/promises";
 import path from "node:path";
 
 const root = process.cwd();
+const homeBackground = await readFile(new URL("./home-background.html", import.meta.url), "utf8");
 const pages = [
   { url: "https://nindyadit.com/", output: "index.html" },
   { url: "https://nindyadit.com/projects/ecoflow", output: "projects/ecoflow/index.html" },
@@ -30,6 +31,51 @@ const clientRenderedAssets = [
   "https://framerusercontent.com/images/VYQK6301wh6QVyrSbaWhSyTxWE.jpg",
 ];
 
+// The original MyGraPARI cards reused travel photos. Use the case study's
+// kiosk screens and wireframes in those specific card slots.
+const myGrapariCardImages = {
+  "11eh14c": ["zhcNucIV3GiMrZLxk7ptBliMNY.png", "Kiosk main menu and number entry"],
+  "1575q9r": ["0HDhZTUE4Qi0mavO3n5Q64Ps.png", "SIM scan and fingerprint verification screens"],
+  geahi9: ["f2jx1pH6aTVcvNUms9KKQY2Wg0.png", "SIM change request and success screens"],
+  "1ray723": ["zhcNucIV3GiMrZLxk7ptBliMNY.png", "Kiosk main menu and number entry"],
+  "1kyqh0j": ["jWmJcHJovOWTR5qQ6OSJFzQX2s.png", "Kiosk prompts for scanning an ID card"],
+  "14lq83l": ["EyADtmacGwUdn7gQiOJBCMs0StQ.png", "Kiosk feedback and confirmation dialogs"],
+  rt6d80: ["dinXoKknnhC6PppmJnWaQGFK6dk.png", "Wireframes showing the kiosk journey step by step"],
+  "17wq4b7": ["jWmJcHJovOWTR5qQ6OSJFzQX2s.png", "Illustrated instructions for scanning an ID card"],
+  ar04bq: ["0HDhZTUE4Qi0mavO3n5Q64Ps.png", "Kiosk screens with progress indicators"],
+};
+
+function replaceMyGrapariCardImages(html) {
+  const cardImage = /(<div\b[^>]*data-framer-appear-id="([\w]+)"[^>]*>(?:<div\b[^>]*>){2})<img\b[^>]*>/g;
+  return html.replace(cardImage, (match, wrapper, id) => {
+    if (!Object.hasOwn(myGrapariCardImages, id)) return match;
+    const [file, alt] = myGrapariCardImages[id];
+    return `${wrapper}<img decoding="async" loading="lazy" width="2160" height="1215" src="https://framerusercontent.com/images/${file}" alt="${alt}" style="display:block;width:100%;height:100%;border-radius:inherit;object-fit:contain;background:#fff">`;
+  });
+}
+
+function removeOldNavigationAndCredit(html) {
+  return html
+    .replace(/<div\b[^>]*class="framer-12cyau8"[^>]*><p\b[^>]*>(?:<!--\$-->)?<a\b[^>]*href="[^"]*#services"[^>]*>What I Do<\/a>(?:<!--\/\$-->)?<\/p><\/div>/g, "")
+    .replace(/<!-- Made in Framer[^>]*-->\n?/g, "")
+    .replace(/\s*•\s*Made in\s*(?:<!--\$-->)?<a\b[^>]*>Framer<\/a>(?:<!--\/\$-->)?/g, "");
+}
+
+function updateSectionNavigation(html) {
+  return html.replace(/<nav\b[^>]*>[\s\S]*?<\/nav>/g, (nav) =>
+    nav
+      .replace(/href="(?:\.\.\/|\.\/)(#(?:work|contact))?"/g, 'href="/$1"')
+      .replace(">About</a>", ">Home</a>")
+      .replace(
+        /<div\b[^>]*class="framer-1hdany6"[^>]*><p\b[^>]*>(?:<!--\$-->)?<a\b[^>]*href="\/#work"[^>]*>Work<\/a>(?:<!--\/\$-->)?<\/p><\/div>/,
+        (workLink) => workLink + workLink
+          .replace("framer-1hdany6", "framer-12cyau8")
+          .replace("/#work", "/#about-me")
+          .replace(">Work</a>", ">About Me</a>"),
+      ),
+  );
+}
+
 function stripRuntime(html) {
   return html
     .replace(/<script\b[^>]*>[\s\S]*?<\/script>/gi, "")
@@ -40,9 +86,15 @@ function stripRuntime(html) {
     .replaceAll("https://framer.com/?via=samar_jamil7", "#")
     .replaceAll("https://nindyadit.com", "https://nindyaditya.github.io")
     .replace(
+      "</head>",
+      '<link rel="stylesheet" href="/assets/project-list.css?v=media-fix"></head>',
+    )
+    .replace(
       "</body>",
-      '<script src="/assets/static.js" defer></script></body>',
-    );
+      '<script src="/assets/static.js?v=media-fix" defer></script></body>',
+    )
+    .replace(/\r\n/g, "\n")
+    .replace(/[ \t]+$/gm, "");
 }
 
 function localPathFor(url) {
@@ -67,7 +119,19 @@ const rendered = [];
 for (const page of pages) {
   const response = await fetch(page.url, { headers });
   if (!response.ok) throw new Error(`${response.status} ${page.url}`);
-  rendered.push({ ...page, html: stripRuntime(await response.text()) });
+  let html = updateSectionNavigation(removeOldNavigationAndCredit(stripRuntime(await response.text())));
+  if (page.output === "index.html") {
+    html = html
+      .replace(/<div\b[^>]*\bid="services"[^>]*>[\s\S]*?(?=<div\b[^>]*\bid="contact")/, "")
+      .replace(/(?=<div\b[^>]*\bid="contact")/, () => `\n${homeBackground}`)
+      .replace("/assets/project-list.css?v=media-fix", "/assets/project-list.css?v=card-cover")
+      .replace("</head>", '\n<link rel="stylesheet" href="/assets/home-slides.css?v=card-cover"></head>')
+      .replace("</body>", '\n<script src="/assets/home-slides.js?v=about-me" defer></script></body>');
+  }
+  if (page.output === "projects/my-grapari/index.html") {
+    html = replaceMyGrapariCardImages(html);
+  }
+  rendered.push({ ...page, html });
 }
 
 const assetUrls = new Set();
