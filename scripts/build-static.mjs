@@ -76,6 +76,11 @@ function updateSectionNavigation(html) {
   );
 }
 
+function fixProjectHomeLinks(html) {
+  const homeLink = /<a\b[^>]*(?:class="framer-1faegwy\b[^"]*"|data-framer-name="Logo ND")[^>]*>/g;
+  return html.replace(homeLink, (link) => link.replace('href="../"', 'href="/"'));
+}
+
 function stripRuntime(html) {
   return html
     .replace(/<script\b[^>]*>[\s\S]*?<\/script>/gi, "")
@@ -122,11 +127,14 @@ for (const page of pages) {
   let html = updateSectionNavigation(removeOldNavigationAndCredit(stripRuntime(await response.text())));
   if (page.output === "index.html") {
     html = html
+      .replaceAll("Home - Folioz", "Nindy's Portfolio")
       .replace(/<div\b[^>]*\bid="services"[^>]*>[\s\S]*?(?=<div\b[^>]*\bid="contact")/, "")
       .replace(/(?=<div\b[^>]*\bid="contact")/, () => `\n${homeBackground}`)
       .replace("/assets/project-list.css?v=media-fix", "/assets/project-list.css?v=card-cover")
       .replace("</head>", '\n<link rel="stylesheet" href="/assets/home-slides.css?v=card-cover"></head>')
       .replace("</body>", '\n<script src="/assets/home-slides.js?v=about-me" defer></script></body>');
+  } else {
+    html = fixProjectHomeLinks(html);
   }
   if (page.output === "projects/my-grapari/index.html") {
     html = replaceMyGrapariCardImages(html);
