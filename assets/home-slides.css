@@ -54,6 +54,9 @@ html.has-home-slides {
 }
 
 .home-work-link {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
   display: inline-flex;
   align-items: center;
   align-self: flex-start;
@@ -66,21 +69,117 @@ html.has-home-slides {
   color: #171717;
   font: 500 14px/1 "General Sans", sans-serif;
   text-decoration: none;
-  transition: background-color 180ms ease, border-color 180ms ease;
+  will-change: transform;
+  transition: color 300ms ease, border-color 300ms ease, transform 350ms cubic-bezier(.22, 1, .36, 1);
 }
 
-.home-work-link::after {
-  content: "\2193" / "";
-  transition: translate 180ms ease;
+.home-work-link::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  border-radius: inherit;
+  background: #000;
+  transform: translateY(101%);
+  transition: transform 400ms cubic-bezier(.22, 1, .36, 1);
+}
+
+.home-work-link__arrow {
+  display: inline-grid;
+  height: 1em;
+  overflow: hidden;
+}
+
+.home-work-link__arrow span {
+  grid-area: 1 / 1;
+  transition: transform 400ms cubic-bezier(.22, 1, .36, 1);
+}
+
+.home-work-link__arrow span + span {
+  transform: translateY(-110%);
 }
 
 .home-work-link:is(:hover, :focus-visible) {
-  background: #fff;
-  border-color: #171717;
+  color: #fff;
+  border-color: #000;
 }
 
-.home-work-link:is(:hover, :focus-visible)::after {
-  translate: 0 3px;
+.home-work-link:is(:hover, :focus-visible)::before {
+  transform: none;
+}
+
+.home-work-link:is(:hover, :focus-visible) .home-work-link__arrow span:first-child {
+  transform: translateY(110%);
+}
+
+.home-work-link:is(:hover, :focus-visible) .home-work-link__arrow span + span {
+  transform: none;
+}
+
+.home-work-link:active {
+  scale: .96;
+}
+
+/* Hero: warm glow inside the "nindy" wordmark (driven by --s / --hx / --hy from JS) */
+#hero h1.hero-glow-text {
+  /* extra paint room so background-clip:text never cuts the y descender */
+  padding-bottom: .34em;
+  margin-bottom: -.34em;
+  white-space: nowrap;
+  /* never wider than the screen: fixes "nind / y" wrapping on phones */
+  font-size: min(var(--framer-font-size, 160px), 39vw) !important;
+  background:
+    radial-gradient(circle at var(--hx, 50%) var(--hy, 50%),
+      #d93c1f 0, #f08a2c calc(var(--s, 0) * 7%), #e3cba4 calc(var(--s, 0) * 15%), transparent calc(var(--s, 0) * 26%)),
+    radial-gradient(circle at var(--ex, 50%) var(--ey, 50%),
+      #f08a2c 0, #e3cba4 calc(var(--s, 0) * 9%), transparent calc(var(--s, 0) * 20%)),
+    #000;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent !important;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Hero: soft ambient glow that trails the cursor */
+#hero {
+  position: relative;
+  isolation: isolate;
+}
+
+.hero-cursor-glow {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  width: 520px;
+  height: 520px;
+  margin: -260px 0 0 -260px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgb(240 138 44 / 16%) 0, rgb(227 203 164 / 14%) 30%, rgb(227 203 164 / 0) 68%);
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 600ms ease;
+  will-change: transform;
+}
+
+#hero.is-glowing .hero-cursor-glow {
+  opacity: 1;
+}
+
+/* Hero: typewriter caret after the role */
+.hero-role::after {
+  content: "";
+  display: inline-block;
+  width: 2px;
+  height: .8em;
+  margin-left: 3px;
+  background: #875c1c;
+  vertical-align: -.05em;
+  animation: hero-caret 1s steps(2, start) infinite;
+}
+
+@keyframes hero-caret {
+  to { visibility: hidden; }
 }
 
 @keyframes home-heading-enter {
@@ -581,7 +680,8 @@ html.has-home-slides {
 @media (prefers-reduced-motion: reduce) {
   .home-slides.is-ready .home-slides__track,
   .home-work-link,
-  .home-work-link::after,
+  .home-work-link::before,
+  .home-work-link__arrow span,
   .home-slide-nav button::before,
   .home-slide-nav__label,
   .home-slide #work .project-card {
@@ -594,8 +694,8 @@ html.has-home-slides {
     animation: none;
   }
 
-  .home-work-link:is(:hover, :focus-visible)::after {
-    translate: none;
+  .hero-role::after {
+    animation: none;
   }
 
   .home-slide #work .project-card:is(:hover, :active),

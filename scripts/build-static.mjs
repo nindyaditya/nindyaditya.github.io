@@ -132,8 +132,8 @@ for (const page of pages) {
       .replace(/(?=<div\b[^>]*\bid="contact")/, () => `\n${homeBackground}`)
       .replace("/assets/project-list.css?v=media-fix", "/assets/project-list.css?v=work-fade")
       .replace("/assets/static.js?v=media-fix", "/assets/static.js?v=work-fade")
-      .replace("</head>", '\n<link rel="stylesheet" href="/assets/home-slides.css?v=about-id"></head>')
-      .replace("</body>", '\n<script src="/assets/home-slides.js?v=about-id" defer></script></body>');
+      .replace("</head>", '\n<link rel="stylesheet" href="/assets/home-slides.css?v=hero-glow"></head>')
+      .replace("</body>", '\n<script src="/assets/home-slides.js?v=hero-glow" defer></script></body>');
   } else {
     html = fixProjectHomeLinks(html);
   }
