@@ -1,37 +1,62 @@
-<section class="home-about" id="about-me" aria-labelledby="background-title">
-  <div class="work-background">
-    <div class="work-background__intro">
-      <h2 id="background-title">About me</h2>
-      <p>I'm a UI/UX designer and master's student at Carnegie Mellon University. At Telkomsel, I helped build by.U from the ground up and redesigned MyGraPARI kiosks to make self-service easier.</p>
-      <p>I'm especially interested in accessibility, interaction design, and what we learn by watching people use the things we make.</p>
+<section class="home-about" id="about-me" aria-labelledby="about-title">
+  <div class="about-id">
+    <div class="about-id__top">
+      <div>
+        <p class="about-id__eyebrow">About me</p>
+        <h2 id="about-title">I learn the most by <em>watching</em> people use the things we <span class="about-id__swap" data-about-swap>make.</span></h2>
+        <p class="about-id__bio">I'm <b>Nindy</b>, a UI/UX designer and master's student at <b>Carnegie Mellon University</b>. At Telkomsel, I helped build <b>by.U</b> from the ground up and redesigned <b>MyGraPARI</b> kiosks to make self-service easier.</p>
+      </div>
+      <div class="about-id__badge-wrap">
+        <article class="about-id__badge" data-about-badge aria-label="Designer ID card">
+          <div class="about-id__slot" aria-hidden="true"></div>
+          <div class="about-id__badge-head"><span>Portfolio pass</span><span>No. 2018-ND</span></div>
+          <div class="about-id__badge-body">
+            <div class="about-id__monogram" aria-hidden="true"><img src="/assets/images/avatar.png" alt=""></div>
+            <div>
+              <p class="about-id__name">Nindy A. Dewi</p>
+              <p class="about-id__role">ui/ux designer</p>
+              <dl class="about-id__fields">
+                <div><dt>Currently</dt><dd>Master's @ Carnegie Mellon, '26</dd></div>
+                <div><dt>Focus</dt><dd>Accessibility · Interaction design</dd></div>
+              </dl>
+            </div>
+          </div>
+          <div class="about-id__badge-foot">
+            <div class="about-id__barcode" aria-hidden="true"></div>
+            <span>ND · 2018 → 2026</span>
+          </div>
+        </article>
+        <p class="about-id__hint" aria-hidden="true">↖ move your cursor over the card</p>
+      </div>
     </div>
-    <div class="work-background__details">
-      <section aria-labelledby="background-experience">
-        <h3 id="background-experience">Experience</h3>
-        <ul>
-          <li>
-            <div><strong>Telkomsel</strong><p>UI Designer / Product Development Associate</p></div>
-            <span>2018&ndash;2025</span>
-          </li>
-          <li>
-            <div><strong>Altheros Capital</strong><p>UI/UX Design Intern</p></div>
-            <span>Summer 2026</span>
-          </li>
-        </ul>
-      </section>
-      <section aria-labelledby="background-education">
-        <h3 id="background-education">Education</h3>
-        <ul>
-          <li>
-            <div><strong>Carnegie Mellon University</strong><p>Master of Integrated Innovation for Products &amp; Services</p></div>
-            <span>Expected Dec 2026</span>
-          </li>
-          <li>
-            <div><strong>Institut Teknologi Bandung</strong><p>B.S. in Information System and Technology</p></div>
-            <span>2018</span>
-          </li>
-        </ul>
-      </section>
+    <div class="about-id__route">
+      <div class="about-id__route-label"><span>The route so far</span><span>2018 → 2026</span></div>
+      <ol class="about-id__stops">
+        <li class="about-id__stop">
+          <span class="about-id__kind">Education</span>
+          <h3>Institut Teknologi Bandung</h3>
+          <p>B.S. Information System &amp; Technology</p>
+          <time>2018</time>
+        </li>
+        <li class="about-id__stop">
+          <span class="about-id__kind">Experience</span>
+          <h3>Telkomsel</h3>
+          <p>UI Designer / Product Development Associate</p>
+          <time>2018 – 2025</time>
+        </li>
+        <li class="about-id__stop">
+          <span class="about-id__kind">Experience</span>
+          <h3>Altheros Capital</h3>
+          <p>UI/UX Design Intern</p>
+          <time>Summer 2026</time>
+        </li>
+        <li class="about-id__stop" data-now>
+          <span class="about-id__kind">Education</span>
+          <h3>Carnegie Mellon University</h3>
+          <p>M. Integrated Innovation for Products &amp; Services</p>
+          <time>Expected Dec 2026</time>
+        </li>
+      </ol>
     </div>
   </div>
 </section>

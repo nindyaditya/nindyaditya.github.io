@@ -172,3 +172,40 @@ function initializeHomeSlides() {
 }
 
 initializeHomeSlides();
+
+function initializeAboutCard() {
+  const reduceMotion = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const swap = document.querySelector("[data-about-swap]");
+  if (swap && !reduceMotion) {
+    const words = ["make.", "ship.", "test.", "design."];
+    let index = 0;
+    setInterval(() => {
+      swap.classList.add("is-out");
+      setTimeout(() => {
+        index = (index + 1) % words.length;
+        swap.textContent = words[index];
+        swap.classList.remove("is-out");
+        swap.classList.add("is-in");
+        requestAnimationFrame(() => requestAnimationFrame(() => swap.classList.remove("is-in")));
+      }, 350);
+    }, 2400);
+  }
+
+  const badge = document.querySelector("[data-about-badge]");
+  if (!badge || reduceMotion || !matchMedia("(hover: hover)").matches) return;
+  badge.addEventListener("pointermove", (event) => {
+    const rect = badge.getBoundingClientRect();
+    const x = (event.clientX - rect.left) / rect.width;
+    const y = (event.clientY - rect.top) / rect.height;
+    badge.style.transition = "transform .12s";
+    badge.style.transform = `rotateY(${(x - .5) * 18}deg) rotateX(${(.5 - y) * 14}deg)`;
+    badge.style.setProperty("--gx", `${x * 100}%`);
+    badge.style.setProperty("--gy", `${y * 100}%`);
+  });
+  badge.addEventListener("pointerleave", () => {
+    badge.style.transition = "";
+    badge.style.transform = "";
+  });
+}
+
+initializeAboutCard();
