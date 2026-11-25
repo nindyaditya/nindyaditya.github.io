@@ -9,6 +9,7 @@ A Framer-independent static portfolio, rebuilt from `https://nindyadit.com` on A
 - `projects/dunia-games/index.html`
 - `projects/my-grapari/index.html`
 - `projects/byu/index.html`
+- `projects/classcue/index.html`
 - `404.html`
 
 ## Deploy to GitHub Pages

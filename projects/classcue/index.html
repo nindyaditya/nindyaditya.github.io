@@ -1,0 +1,170 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>One Teacher, 30 Students, and the Things You Miss During a Lesson | Nindy Aditya Dewi</title>
+  <meta name="description" content="A Technology Mindset project about cognitive accessibility and how a short lesson check-in could help teachers respond to different learning needs.">
+  <link rel="icon" href="/assets/images/nd-logo.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Kalam:wght@400;700&family=Spectral:ital,wght@0,400;0,500;1,400&family=Young+Serif&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/technology-mindset.css?v=20261125-1">
+<link rel="canonical" href="https://nindyaditya.github.io/projects/classcue/"></head>
+<body>
+  <header class="site-header wrap">
+    <a class="brand" href="/" aria-label="Nindy Aditya Dewi home"><img src="/assets/images/nd-logo.svg" width="28" height="28" alt=""></a>
+    <nav aria-label="Main navigation">
+      <a href="/">Home</a>
+      <a href="/#work">Work</a>
+      <a href="/#about-me">About Me</a>
+      <a href="/#contact">Contact</a>
+    </nav>
+  </header>
+
+  <main class="wrap">
+    <header class="intro book-cover">
+      <h1>One Teacher, 30 Students, and the Things You Miss During a Lesson</h1>
+      <p class="lede">How could one teacher better understand what neurodivergent students, including those with ADHD, need during a lesson?</p>
+      <p class="cover-author">By Nindy Aditya Dewi</p>
+      <div class="cover-actions">
+        <a class="button" href="#classroom-heading">Start reading →</a>
+        <a class="cover-secondary" href="https://nindyaditya.github.io/classcue/?portal=student" target="_blank" rel="noopener">Try live prototype ↗</a>
+      </div>
+      <div class="cover-art" aria-hidden="true"><img src="/assets/images/technology-mindset/book-cover-classroom.png" width="1536" height="1024" alt=""></div>
+    </header>
+
+    <section class="classroom classroom-story" aria-labelledby="classroom-heading">
+      <div class="classroom-copy">
+        <p class="opening-quote">“You can start.”</p>
+        <h2 id="classroom-heading">Who do you check in with first?</h2>
+        <p>Imagine a class of 30. The teacher has just worked through an example on the board. Now it’s the students’ turn to try it on their own.</p>
+        <p>Some start writing. One raises a hand. Others look back at the example. The teacher stops at one desk, while the rest of the class keeps working.</p>
+        <p>How can one teacher find out who needs a little more time, another explanation, or the steps written down?</p>
+      </div>
+      <figure class="classroom-illustration">
+        <img src="/assets/images/technology-mindset/classroom-handdrawing.png" width="1670" height="941" alt="Line drawing of a teacher leaning beside one student's desk while other students work or look toward the board.">
+      </figure>
+    </section>
+
+
+
+    <section class="chapter" aria-labelledby="memory-heading">
+      <h2 id="memory-heading">It was clear on the board</h2>
+      <p>While the teacher works through an example, the previous step is right there. Once it’s wiped away, students have to hold the steps in mind and use them on a new question.</p>
+      <figure class="classroom-illustration">
+        <img src="/assets/images/technology-mindset/different-learning-needs.png" width="1672" height="941" alt="Line drawing of students working at desks, with some writing or reading, one raising a hand, and others looking thoughtful or uncertain." loading="lazy">
+      </figure>
+      <p>Working memory helps us hold and use information in the moment. Kofler and colleagues found that working-memory difficulties varied across children with ADHD. Two students with ADHD can experience the same lesson differently. <a class="text-link" href="#working-memory-source">Kofler et al., 2019</a></p>
+    </section>
+
+    <section class="chapter needs-chapter" aria-labelledby="needs-heading">
+      <div class="story-copy">
+        <h2 id="needs-heading">The same classroom, different needs.</h2>
+        <p>Neurodivergent students can experience the same lesson differently. A diagnosis gives some context. Hearing from the student helps the teacher understand what would help today.</p>
+        <p class="needs-note">These are illustrative examples. Needs vary between students and between lessons. Ask what helps.</p>
+        <p class="needs-sources"><a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC7732033/" target="_blank" rel="noopener">Neurodiversity overview · Doyle (2020) ↗</a></p>
+      </div>
+      <div class="needs-explorer">
+        <p class="needs-instruction">Choose a desk to explore an example</p>
+        <div class="needs-desks" role="group" aria-label="Illustrative learning needs"></div>
+        <div class="needs-card" aria-live="polite" aria-atomic="true"></div>
+        <div class="needs-navigation"><button type="button" class="needs-prev" aria-label="Previous example">←</button><span class="needs-count"></span><button type="button" class="needs-next" aria-label="Next example">→</button></div>
+      </div>
+    </section>
+
+    <section class="chapter research" aria-labelledby="research-heading">
+      <div class="story-copy"><h2 id="research-heading">I started with the learner. Then I looked around the classroom.</h2>
+      <p>My early question was about cognitive accessibility in AI learning tools for neurodivergent students. Thinking about one teacher and around 30 students shifted my attention to how teachers could understand different needs during the same lesson.</p>
+      <p>I reviewed Gemini Guided Learning and Khanmigo student experiences, alongside teacher-facing planning tools. In the experiences and documentation reviewed, I found guided support and activity visibility. I wanted to explore a more complete exchange between student and teacher.</p></div>
+      <figure class="classroom-illustration">
+        <a href="/assets/images/technology-mindset/design-direction-iterations.png" aria-label="Enlarge the illustration of the project's design iterations">
+          <img src="/assets/images/technology-mindset/design-direction-iterations.png" width="1672" height="941" alt="Three illustrated stages: AI supports one learner directly; one teacher supports many different classroom experiences; students express needs and teachers respond in a two-way exchange." loading="lazy">
+        </a>
+      </figure>
+    </section>
+    <section class="chapter principles" aria-labelledby="principles-heading">
+      <div class="story-copy"><h2 id="principles-heading">What would the design need to do?</h2>
+      <p>Students needed a way to say what was difficult and what might help. Teachers needed enough context to decide what to do next. I used these needs to shape a check-in that continues after the teacher responds, so students can say what helped and what still feels unclear.</p></div>
+      <figure class="classroom-illustration">
+        <a href="/assets/images/technology-mindset/design-principles-handdrawing.png" aria-label="Enlarge the three design principles">
+          <img src="/assets/images/technology-mindset/design-principles-handdrawing.png" width="1448" height="1086" alt="Three design principles. Action and Expression: make it easy to say what happened, with short choices and optional text without requiring a diagnosis. Representation: find the barrier in the lesson by keeping original responses available. Engagement: give the conversation a next step, so students see the response and say whether it helped." loading="lazy">
+        </a>
+      </figure>
+    </section>
+    <section class="chapter" aria-labelledby="process-heading">
+      <h2 id="process-heading">Mapping the exchange</h2>
+      <p>The storyboard helped me trace what happens after a student speaks up. A check-in needs a teacher response, and that response needs a way back to the student.</p>
+      <p><a class="text-link" href="/assets/images/technology-mindset/service-blueprint-handdrawing.png" target="_blank" rel="noopener">View full-size blueprint ↗</a></p>
+      <figure class="classroom-illustration">
+        <a href="/assets/images/technology-mindset/service-blueprint-handdrawing.png" aria-label="Enlarge the service blueprint">
+          <img src="/assets/images/technology-mindset/service-blueprint-handdrawing.png" width="1466" height="1073" alt="Service blueprint showing four phases: open check-in, collect feedback, review and plan, and follow up. Rows map student actions, visible teacher actions, backstage teacher and staff work, AI suggestions, and system support. Dashed cards show optional IEP verification steps." loading="lazy">
+        </a>
+      </figure>
+    </section>
+    <section class="chapter" id="prototype" aria-labelledby="prototype-heading">
+      <h2 id="prototype-heading">Could you keep the steps on the board?</h2>
+      <p>A short check-in at the end of the lesson asks how the pace felt, where students got stuck, and what would help. In this example, “Could you keep the steps on the board?” gives the teacher something concrete to try. Any student could ask without sharing a diagnosis.</p>
+      <p><a class="handdrawn-cta" href="https://nindyaditya.github.io/classcue/?portal=student" target="_blank" rel="noopener">Try student prototype ↗</a></p>
+      <figure class="checkin-animation">
+        <video class="prototype-video" autoplay loop muted playsinline preload="auto" aria-label="Student check-in walkthrough" disablepictureinpicture>
+          <source src="/assets/videos/technology-mindset/check-in-walkthrough.mp4" type="video/mp4">
+        </video>
+      </figure>
+    </section>
+
+    <section class="chapter" aria-labelledby="review-heading">
+      <h2 id="review-heading">What would the teacher see?</h2>
+      <p>Reading up to 30 check-ins takes time. AI could group similar responses and suggest changes to the pace, which instructions to leave up, or which step to explain again. The teacher can open the original responses, decide what to try, and send a reply.</p>
+      <p><a class="handdrawn-cta" href="https://nindyaditya.github.io/classcue/?portal=teacher" target="_blank" rel="noopener">Try teacher prototype ↗</a></p>
+      <figure class="classroom-illustration">
+        <a href="/assets/images/technology-mindset/teacher-class-patterns.png" aria-label="Enlarge the illustrative teacher feedback summary">
+          <img src="/assets/images/technology-mindset/teacher-class-patterns.png" width="1792" height="878" alt="Illustrative teacher dashboard with sample class patterns, original student replies, and a proposed pace adjustment. The recommendation combines reported pace, a comprehension check, and requests for another example. All names and numbers are demo data." loading="lazy">
+        </a>
+      </figure>
+    </section>
+
+    <section class="chapter" aria-labelledby="iep-heading">
+      <h2 id="iep-heading">What if the student already has a support plan?</h2>
+      <p>A teacher authorized to see the student’s Individualized Education Program (IEP) could read their check-in alongside the supports already confirmed in the plan. That gives the teacher a more specific place to follow up.</p>
+      <p><a class="handdrawn-cta" href="https://nindyaditya.github.io/classcue/?portal=staff" target="_blank" rel="noopener">Try staff prototype ↗</a></p>
+      <figure class="classroom-illustration">
+        <a href="/assets/images/technology-mindset/required-iep-support.png" aria-label="Enlarge the illustrative IEP support reminder">
+          <img src="/assets/images/technology-mindset/required-iep-support.png" width="1586" height="992" alt="Illustrative support reminder using fictional student Maya Carter: provide written directions with numbered steps before independent work begins. Required IEP support confirmed by authorized staff." loading="lazy">
+        </a>
+      </figure>
+    </section>
+
+    <section class="chapter" aria-labelledby="follow-up-heading">
+      <h2 id="follow-up-heading">“You can start.”</h2>
+      <p>Next lesson, the teacher says it again. This time, the steps stay on the board. Afterward, students can tell the teacher whether that helped them get started and where they still needed support.</p>
+      <figure class="classroom-illustration">
+        <a href="/assets/images/technology-mindset/next-lesson-follow-up.png" aria-label="Enlarge the next lesson and student follow-up illustration">
+          <img src="/assets/images/technology-mindset/next-lesson-follow-up.png" width="1672" height="941" alt="Teacher keeps three numbered steps visible on the board during class. Alongside this scene, a student uses a tablet to report what helped and what remains unclear while the teacher reviews the feedback." loading="lazy">
+        </a>
+      </figure>
+    </section>
+
+    <section class="chapter evaluation" aria-labelledby="evaluation-heading"><div><h2 id="evaluation-heading">Could this fit into a real school day?</h2>      <h3>What I want to test</h3>
+      <ul>
+        <li>Can teachers review the groups and original responses in the time they have?</li>
+        <li>Do the groups preserve what students meant, including requests that only one student made?</li>
+        <li>Can students explain what helped after the teacher tries an adjustment?</li>
+      </ul>
+      <p>I still need to test whether this is workable for teachers and helpful for students.</p>
+</div></section>
+    <section class="chapter notes" aria-labelledby="notes-heading">
+      <div class="reference-page">
+        <h2 id="notes-heading">Research and references</h2>
+        <ul class="book-reference-list"><li>Doyle (2020). <a class="text-link" href="https://doi.org/10.1093/bmb/ldaa021">Neurodiversity at work: a biopsychosocial model and the impact on working adults</a>.</li><li id="working-memory-source">Kofler et al. (2019). <a class="text-link" href="https://pubmed.ncbi.nlm.nih.gov/29705926/">Executive Functioning Heterogeneity in Pediatric ADHD</a>.</li><li>McDowall &amp; Kiseleva (2024). <a class="text-link" href="https://doi.org/10.1177/27546330241291769">A rapid review of supports for neurodivergent students in higher education: Implications for research and practice</a>.</li><li>Zhang et al. (2024). <a class="text-link" href="https://doi.org/10.1007/s10648-024-09860-7">Unraveling Challenges with the Implementation of Universal Design for Learning: A Systematic Literature Review</a>.</li><li>Mayer &amp; Moreno (2003). <a class="text-link" href="https://doi.org/10.1207/S15326985EP3801_6">Nine Ways to Reduce Cognitive Load in Multimedia Learning</a>.</li><li>Bastani et al. (2025). <a class="text-link" href="https://doi.org/10.1073/pnas.2422633122">Generative AI without guardrails can harm learning: Evidence from high school mathematics</a>.</li></ul>
+      </div>
+      <div class="reference-page">
+        <ul class="book-reference-list"><li>Kestin et al. (2025). <a class="text-link" href="https://doi.org/10.1038/s41598-025-97652-6">AI tutoring outperforms in-class active learning: an RCT introducing a novel research-based design in an authentic educational setting</a>.</li><li>Zhao, Cox, &amp; Chen (2025). <a class="text-link" href="https://doi.org/10.1016/j.iheduc.2025.101014">The use of generative AI by students with disabilities in higher education</a>.</li><li>Yan et al. (2025). <a class="text-link" href="https://doi.org/10.1016/j.compedu.2025.105322">The effects of generative AI agents and scaffolding on enhancing students’ comprehension of visual learning analytics</a>.</li><li>CAST. <a class="text-link" href="https://udlguidelines.cast.org/">Universal Design for Learning Guidelines</a>.</li></ul>
+      </div>
+    </section>
+  </main>
+
+  <footer class="wrap site-footer">© 2026 — Designed by Nindy A Dewi</footer>
+<script src="/assets/technology-mindset-needs.js"></script>
+<script src="/assets/technology-mindset-slides.js?v=20261125-1"></script></body>
+</html>

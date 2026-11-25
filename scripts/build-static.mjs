@@ -130,7 +130,8 @@ for (const page of pages) {
       .replaceAll("Home - Folioz", "Nindy's Portfolio")
       .replace(/<div\b[^>]*\bid="services"[^>]*>[\s\S]*?(?=<div\b[^>]*\bid="contact")/, "")
       .replace(/(?=<div\b[^>]*\bid="contact")/, () => `\n${homeBackground}`)
-      .replace("/assets/project-list.css?v=media-fix", "/assets/project-list.css?v=card-cover")
+      .replace("/assets/project-list.css?v=media-fix", "/assets/project-list.css?v=work-fade")
+      .replace("/assets/static.js?v=media-fix", "/assets/static.js?v=work-fade")
       .replace("</head>", '\n<link rel="stylesheet" href="/assets/home-slides.css?v=about-id"></head>')
       .replace("</body>", '\n<script src="/assets/home-slides.js?v=about-id" defer></script></body>');
   } else {
